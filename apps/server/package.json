@@ -1,0 +1,19 @@
+{
+    "name": "@foursies/server",
+    "version": "1.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "tsx watch src/index.js",
+        "build": "tsc",
+        "start": "node dist/index.js"
+    },
+    "dependencies": {
+        "socket.io": "^4.8.4"
+    },
+    "devDependencies": {
+        "@types/jest": "^30.0.0",
+        "jest": "^30.5.2",
+        "ts-jest": "^29.4.15"
+    }
+}

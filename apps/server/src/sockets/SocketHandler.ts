@@ -11,13 +11,9 @@ export class SocketHandler {
 
     initialise(): void {
         this.io.on("connection", (socket) => {
-            console.log(`Player connected: ${socket.id}`);
-
             this.registerRoomEvents(socket);
 
             socket.on("disconnect", () => {
-                console.log(`Player disconnected: ${socket.id}`);
-                
                 this.removePlayer(socket);
             });
         });
@@ -40,6 +36,7 @@ export class SocketHandler {
                 });
 
                 await socket.join(room.code);
+
                 socket.data.roomCode = room.code;
 
                 socket.emit(RoomEvents.CREATED, this.getRoomState(room));
@@ -67,6 +64,7 @@ export class SocketHandler {
                 });
 
                 await socket.join(room.code);
+
                 socket.data.roomCode = room.code;
 
                 socket.emit(RoomEvents.JOINED, this.getRoomState(room));
@@ -98,9 +96,10 @@ export class SocketHandler {
         socket.emit(RoomEvents.LEFT);
 
         if (room) {
+            const state = this.getRoomState(room);
             this.io.to(code).emit(
                 RoomEvents.UPDATED,
-                this.getRoomState(room),
+                state,
             );
         }
     }

@@ -9,7 +9,8 @@
   ],
   "scripts": {
     "dev:frontend": "npm run dev --workspace=@foursies/web",
-    "dev:backend": "npm run dev --workspace=@foursies/server"
+    "dev:backend": "npm run dev --workspace=@foursies/server",
+    "test": "npm run test --workspaces --if-present"
   },
   "main": "index.js",
   "repository": {
